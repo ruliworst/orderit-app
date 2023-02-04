@@ -20,12 +20,12 @@ const deleteOrder = id => {
   return request.then(response => response.data)
 }
 
-const postOrder = order => {
+const createOrder = order => {
   const request = axios.post(`${baseUrl}`, order)
 
   return request.then(response => response.data)
 }
 
-const functions = { getAll, getOrder, postOrder, deleteOrder }
+const functions = { getAll, getOrder, createOrder, deleteOrder }
 
 export default functions
