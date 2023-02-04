@@ -1,14 +1,49 @@
-const OrderForm = (props) => {
+import { useState } from 'react'
+
+const OrderForm = ({ createOrder }) => {
+  const [location, setLocation] = useState('')
+  const [price, setPrice] = useState('')
+  const [quantity, setQuantity] = useState('')
+
+  const handleCreateOrder = (event) => {
+    event.preventDefault()
+    createOrder(location, price, quantity)
+    setLocation('')
+    setPrice('')
+    setQuantity('')
+  }
+
   return <div className="OrderForm">
-    <form>
-      <label for="fLocation">Location</label>
-      <input type="text" id="fLocation" name="fLocation" />
-      <label for="fPrice">Price</label>
-      <input type="text" id="fPrice" name="fPrice" />
-      <label for="fQuantity">Quantity</label>
-      <input type="text" id="fQuantity" name="fQuantity" />
-      <input type="submit" value="Add new order" />
-    </form>
+    <form onSubmit={handleCreateOrder}>
+        <div>
+          Location
+          <input
+            type="text"
+            value={location}
+            name="Location"
+            onChange={({ target }) => setLocation(target.value)}
+          />
+        </div>
+        <div>
+          Price
+          <input
+            type="text"
+            value={price}
+            name="Price"
+            onChange={({ target }) => setPrice(target.value)}
+          />
+        </div>
+        <div>
+          Quantity
+          <input
+            type="text"
+            value={quantity}
+            name="Quantity"
+            onChange={({ target }) => setQuantity(target.value)}
+          />
+        </div>
+        <button type="submit">Create Order</button>
+      </form>
   </div>
 }
 
