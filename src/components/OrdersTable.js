@@ -1,12 +1,30 @@
 import OrderItem from './OrderItem'
+import { useRef, useState, useEffect } from 'react'
 import ordersService from '../services/ordersService'
-import { useEffect, useState } from 'react'
+import Togglable from './Togglable'
+import OrderForm from './OrderForm'
 
-const OrdersTable = () => {
+const OrdersTable = (props) => {
   // TODO: Implement Statistics functionality about the data.
-
   const [orders, setOrders] = useState([])
 
+  const createOrderFormRef = useRef()
+
+  const createOrder = (location, price, quantity) => {
+    try {
+      createOrderFormRef.current.toggleVisibility()
+      ordersService
+        .createOrder({ location, price, quantity })
+        .then(order => {
+          if (order) {
+            setOrders([...orders, order])
+          }
+        })
+    } catch (e) {
+      console.error(e)
+    }
+  } 
+  
   useEffect(() => {
     ordersService.getAll().then(orders => setOrders(orders))
   }, [])
@@ -25,6 +43,9 @@ const OrdersTable = () => {
   }
 
   return <div className="OrdersTable">
+    <Togglable buttonLabel="New Order" ref={createOrderFormRef}>
+      <OrderForm createOrder={createOrder}/>
+    </Togglable>
     <table>
       <thead>
         <tr>
