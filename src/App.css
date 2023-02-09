@@ -1,7 +1,79 @@
 .App {
+  margin: auto;
+  font-family: 'Montserrat';
+}
+
+.container {
+  width: 60%;
+}
+
+.logo {
   text-align: center;
 }
 
+nav {
+  display: grid;
+  grid-template-columns: 0.5fr 2fr 1fr;
+  align-items: center;
+  font-size: 16px;
+  height: 88px;
+  border: 1px solid rgb(165, 158, 158);
+  background-color: rgba(165, 158, 158, 0.1);
+  padding: 0 5rem 0 5rem;
+}
+
+.signInSection span {
+  margin-right: 2rem;
+}
+
+.signInSection span:hover {
+  color:rgb(104, 149, 180);
+  cursor: pointer;
+}
+
+.signInSection a {
+  text-decoration: none;
+  color: white;
+  background-color: rgb(104, 149, 180);
+  padding: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.555);
+  border-radius: 4px;
+}
+
+.signInSection a:hover {
+  color:rgb(204, 234, 255);
+  cursor: pointer;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  column-gap: 3rem;
+}
+
+nav img {
+  max-width: 100%;
+  height: auto;
+}
+
+li:hover {
+  color:rgb(104, 149, 180);
+  cursor: pointer;
+}
+
+/*
+header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  min-height: 100 rem;
+}
+
+header h2 {
+  margin: 0;
+}
+*/
 .App-logo {
   height: 40vmin;
   pointer-events: none;
