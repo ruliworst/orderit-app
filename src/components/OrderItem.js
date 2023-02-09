@@ -1,4 +1,5 @@
-import CustomButton from './CustomButton';
+import '../styles/OrderItem.css';
+import { FaTrashAlt } from 'react-icons/fa'
 
 const OrderItem = props => {
   const {id, location, price, quantity, deleteOrder} = props
@@ -12,7 +13,7 @@ const OrderItem = props => {
     <td>{ location }</td>
     <td>{ price }</td>
     <td>{ quantity }</td>
-    <td><CustomButton text="delete" action={handleDelete} /></td>
+    <td><button onClick={handleDelete}>{ FaTrashAlt() }</button></td>
   </tr>
 }
 
