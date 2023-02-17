@@ -1,6 +1,11 @@
-.App {
+.Home {
   margin: auto;
   font-family: 'Montserrat';
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }
 
 .container {
@@ -31,7 +36,24 @@ nav {
   cursor: pointer;
 }
 
-.signInSection a {
+nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  column-gap: 3rem;
+}
+
+nav a:hover {
+  color:rgb(104, 149, 180);
+  cursor: pointer;
+}
+
+nav img {
+  max-width: 100%;
+  height: auto;
+}
+
+.tryFreeLink {
   text-decoration: none;
   color: white;
   background-color: rgb(104, 149, 180);
@@ -40,26 +62,13 @@ nav {
   border-radius: 4px;
 }
 
-.signInSection a:hover {
+.tryFreeLink:hover {
   color:rgb(204, 234, 255);
   cursor: pointer;
 }
 
-nav ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  column-gap: 3rem;
-}
-
-nav img {
-  max-width: 100%;
-  height: auto;
-}
-
-li:hover {
-  color:rgb(104, 149, 180);
-  cursor: pointer;
+#homeContent {
+  height: calc(100vh - 89.6px);
 }
 
 /*

@@ -1,0 +1,59 @@
+.LoginForm {
+  height: inherit;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
+.login  {
+  font-family: 'Montserrat';
+  font-size: 16px;
+  border-right: 1px solid rgb(165, 158, 158);
+  background-color: rgba(165, 158, 158, 0.1);
+  padding-left: 32px;
+  padding-top: 72px;
+}
+
+h2 {
+  font-size: 26px;
+  font-weight: 400;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.7rem;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+  column-gap: 0.5rem;
+}
+
+form input {
+  width: 60%;
+  padding: 5px;
+}
+
+form button {
+  width: 6rem;
+  text-decoration: none;
+  color: white;
+  background-color: rgba(23, 154, 0, 0.776);
+  padding: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.555);
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.loginContent {
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.loginContent img {
+  max-width: 90%;
+  height: auto;
+}

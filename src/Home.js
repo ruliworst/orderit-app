@@ -1,17 +1,14 @@
-import './App.css';
+import './Home.css';
 import Logo from './static/logo_transparent.png'
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import usersService from './services/usersService'
 import Togglable from './components/Togglable';
-import OrdersSection from './components/OrdersSection'
+import { Link, Outlet } from 'react-router-dom'
 
-const App = () => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+const Home = () => {
   const [usernameRegister, setUsernameRegister] = useState('')
   const [passwordRegister, setPasswordRegister] = useState('')
-
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState('')
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedUser')
@@ -20,51 +17,6 @@ const App = () => {
       setUser(user)
     }
   }, [])
-
-  const handleLogin = async (event) => {
-    event.preventDefault()
-
-    try {
-      const loggedUser = await usersService.login(username, password)
-      setUser(loggedUser)
-
-      window.localStorage.setItem(
-        'loggedUser', JSON.stringify(loggedUser)
-      )
-
-      setUsername('')
-      setPassword('')
-    } catch (exception) {
-      console.error(exception)
-    }
-  }
-
-  const loginForm = () => {
-    return <div>
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <div>
-          username
-          <input
-            type="text"
-            value={username}
-            name="Username"
-            onChange={({ target }) => setUsername(target.value)}
-          />
-        </div>
-        <div>
-          password
-          <input
-            type="password"
-            value={password}
-            name="Password"
-            onChange={({ target }) => setPassword(target.value)}
-          />
-        </div>
-        <button type="submit">Login</button>
-      </form>
-   </div>
-  }
 
   const registerFormRef = useRef()
 
@@ -111,29 +63,30 @@ const App = () => {
     }
   }
 
-  const handleLogout = (event) => {
-    event.preventDefault()
-
-    window.localStorage.removeItem('loggedUser')
-    setUser(null)
-  }
-
   return (
-    <div className="App">
+    <div className="Home">
       <nav>
         <div className='logo'>
-          <a href='#'><img src={ Logo } alt="OrderIt logo" /></a>  
+          <a href='/'><img src={ Logo } alt="OrderIt logo" /></a>  
         </div>
         <ul>
-          <li>Our product</li>
-          <li>Who are we?</li>
-          <li>Pricing</li>
+          <li><a href="/demo">Our product</a></li>
+          <li><a href="/about">Who are we?</a></li>
+          <li><a href="/pricing">Pricing</a></li>
         </ul>  
         <div className="signInSection">
-          <span>Sign In</span>
-          <a href="#">Try Free</a>
+          <span className='loginButton'><Link to='/login'>Sign In</Link></span>
+          <a href="/orders" className='tryFreeLink'>Try Free</a>
         </div>
       </nav>
+      <div id="homeContent"><Outlet /></div>
+    </div>
+  );
+}
+
+export default Home;
+
+/*
       {
         <div>
           { loginForm() }
@@ -143,13 +96,7 @@ const App = () => {
           }
         </div>
       }
-    </div>
-  );
-}
 
-export default App;
-
-/*
 {
         user === null
           ? <header>

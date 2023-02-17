@@ -1,8 +1,11 @@
 const CustomButton = props => {
-  const {text, action} = props
+  const {text, action, icon} = props
 
   return <button onClick={action}>
-    { text }
+    {text === null
+      ? icon
+      : text
+    }
   </button>
 }
 
