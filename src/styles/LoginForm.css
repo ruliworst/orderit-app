@@ -47,6 +47,12 @@ form button {
   font-size: 15px;
 }
 
+form button:hover {
+  cursor: pointer;
+  background-color: rgb(165, 158, 158);
+  transition: background-color 0.3s ease-out;
+}
+
 .loginContent {
   padding: 30px;
   display: flex;
@@ -56,4 +62,9 @@ form button {
 .loginContent img {
   max-width: 90%;
   height: auto;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
 }

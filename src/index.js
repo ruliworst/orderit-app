@@ -7,7 +7,6 @@ import {
   createBrowserRouter,
   RouterProvider
 } from "react-router-dom";
-import OrderForm from './components/OrderForm';
 import LoginForm from './components/LoginForm';
 
 const router = createBrowserRouter([
@@ -18,10 +17,6 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <LoginForm />
-      },
-      {
-        path: "/orders",
-        element: <OrderForm />
       }
     ]
   },
