@@ -1,13 +1,24 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import itemsService from '../services/itemsService'
 
 const OrderForm = ({ createOrder }) => {
   const [location, setLocation] = useState('')
   const [price, setPrice] = useState('')
   const [quantity, setQuantity] = useState('')
+  const [item, setItem] = useState('')
+  const [items, setItems] = useState([])
+
+  useEffect(() => {
+    itemsService.getAll().then(items => 
+      {
+        setItems(items)
+        setItem(items[0].id)
+      })
+  }, [])
 
   const handleCreateOrder = (event) => {
     event.preventDefault()
-    createOrder(location, price, quantity)
+    createOrder(location, price, quantity, item)
     setLocation('')
     setPrice('')
     setQuantity('')
@@ -41,6 +52,12 @@ const OrderForm = ({ createOrder }) => {
             name="Quantity"
             onChange={({ target }) => setQuantity(target.value)}
           />
+        </div>
+        <div>
+          Item
+          <select name="items" value={item} onChange={({ target }) => setItem(target.value)}>
+            {items.map(item => <option value={item.id}>{item.name}</option>)}
+          </select>
         </div>
         <button type="submit">Create Order</button>
       </form>

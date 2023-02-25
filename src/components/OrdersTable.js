@@ -14,11 +14,13 @@ const OrdersTable = (props) => {
           <th>Location</th>
           <th>Price (€)</th>
           <th>Quantity</th>
+          <th>Product</th>
           <th></th>
         </tr>
       </thead>
       <tbody>
-        {orders.map(order => <OrderItem key={order.publicId} id={order.publicId} status={order.status} location={order.location} price={order.price} quantity={order.quantity} deleteOrder={deleteOrder}/>)}
+        {orders.map(order => <OrderItem key={order.publicId} id={order.publicId} status={order.status} location={order.location} price={order.price} quantity={order.quantity} item={order.item.name} deleteOrder={deleteOrder}/>
+        )}
       </tbody>
     </table>
   </div>

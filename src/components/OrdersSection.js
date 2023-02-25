@@ -3,17 +3,24 @@ import OrdersNavigationBar from "./OrdersNavigationBar"
 import OrdersTable from "./OrdersTable"
 import { useState, useEffect} from 'react'
 import ordersService from '../services/ordersService'
+import itemsService from '../services/itemsService'
 
 const OrdersSection = (props) => {
   const [orders, setOrders] = useState([])
 
-  const createOrder = (location, price, quantity, status = 'Pending') => {
+  const createOrder = (location, price, quantity, item, status = 'Pending') => {
     try {
       ordersService
-        .createOrder({ location, price, quantity, status })
+        .createOrder({ location, price, quantity, status, item })
         .then(order => {
           if (order) {
-            setOrders([...orders, order])
+            // This code is executed to get the item associated to the order. Otherwise, once the order has been created the item name will not be showed automatically.
+            itemsService
+              .getItem(order.item)
+              .then(item =>{ 
+                let orderWithUpdatedItem = {...order, item}
+                setOrders([...orders, orderWithUpdatedItem])
+              })
           }
         })
     } catch (e) {
