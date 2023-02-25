@@ -1,0 +1,6 @@
+.OrdersSection {
+  display: inline-grid;
+  grid-template-columns: auto 1fr;
+  justify-items: end;
+  height: calc(100vh - 89.6px);
+}

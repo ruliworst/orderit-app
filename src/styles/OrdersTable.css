@@ -1,7 +1,41 @@
 .OrdersTable {
-  margin: auto;
+  margin-top: 30px;
+  margin-left: 40px;
+  height: 600px;
+  overflow-y: auto;
 }
 
 .OrdersTable table {
+  position: sticky;
+  top: 0;
   margin: auto;
+  border-collapse: collapse;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  min-width: 900px;
+}
+
+thead th {
+  position: sticky;
+  top: 0px;
+  background-color: grey;
+
+}
+
+th, td {
+  text-align: start;
+  padding: 0.5rem;
+}
+
+tbody tr {
+  border-bottom: 1px solid black;
+}
+
+tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+tbody tr:last-of-type {
+  border-bottom: 1px solid black;
 }
