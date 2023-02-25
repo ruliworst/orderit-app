@@ -1,3 +1,4 @@
+import '../styles/OrdersSection.css'
 import OrdersNavigationBar from "./OrdersNavigationBar"
 import OrdersTable from "./OrdersTable"
 import { useState, useEffect} from 'react'
@@ -6,10 +7,10 @@ import ordersService from '../services/ordersService'
 const OrdersSection = (props) => {
   const [orders, setOrders] = useState([])
 
-  const createOrder = (location, price, quantity) => {
+  const createOrder = (location, price, quantity, status = 'Pending') => {
     try {
       ordersService
-        .createOrder({ location, price, quantity })
+        .createOrder({ location, price, quantity, status })
         .then(order => {
           if (order) {
             setOrders([...orders, order])
@@ -26,12 +27,14 @@ const OrdersSection = (props) => {
 
   const deleteOrder = (orderId) => {
     try {
-      ordersService
+      if(window.confirm("Are you sure you want to delete the order?")) {
+        ordersService
         .deleteOrder(orderId)
         .then(() => {
           const newOrders = orders.filter(order => order.publicId !== orderId)
           setOrders(newOrders)
         })
+      }
     } catch (error) {
       console.error(error)
     }
