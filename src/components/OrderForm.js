@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
+import { useOutletContext } from 'react-router-dom'
 import itemsService from '../services/itemsService'
 
-const OrderForm = ({ createOrder }) => {
+const OrderForm = () => {
   const [location, setLocation] = useState('')
   const [price, setPrice] = useState('')
   const [quantity, setQuantity] = useState('')
   const [item, setItem] = useState('')
   const [items, setItems] = useState([])
+  const { createOrder } = useOutletContext()
 
   useEffect(() => {
     itemsService.getAll().then(items => 

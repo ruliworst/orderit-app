@@ -8,6 +8,8 @@ import {
   RouterProvider
 } from "react-router-dom";
 import LoginForm from './components/LoginForm';
+import OrderForm from './components/OrderForm';
+import OrdersTable from './components/OrdersTable';
 
 const router = createBrowserRouter([
   {
@@ -17,13 +19,23 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <LoginForm />
+      },
+      {
+        path: "/orders",
+        element: <OrdersSection />,
+        children: [
+          {
+            path: "/orders/create",
+            element: <OrderForm />
+          },
+          {
+            path: "/orders/",
+            element: <OrdersTable />
+          }
+        ]
       }
     ]
   },
-  {
-    path: "/orders",
-    element: <OrdersSection />
-  }
 ]); 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

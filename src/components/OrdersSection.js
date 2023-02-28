@@ -4,6 +4,7 @@ import OrdersTable from "./OrdersTable"
 import { useState, useEffect} from 'react'
 import ordersService from '../services/ordersService'
 import itemsService from '../services/itemsService'
+import { Outlet } from 'react-router-dom'
 
 const OrdersSection = (props) => {
   const [orders, setOrders] = useState([])
@@ -36,21 +37,33 @@ const OrdersSection = (props) => {
     try {
       if(window.confirm("Are you sure you want to delete the order?")) {
         ordersService
-        .deleteOrder(orderId)
-        .then(() => {
-          const newOrders = orders.filter(order => order.publicId !== orderId)
-          setOrders(newOrders)
-        })
+          .deleteOrder(orderId)
+          .then(() => {
+            const newOrders = orders.filter(order => order.publicId !== orderId)
+            setOrders(newOrders)
+          })
       }
     } catch (error) {
       console.error(error)
     }
   }
 
+  const completeOrder = (orderPublicId) => {
+    try {
+      if(window.confirm("Are you sure you want to complete the order?")) {
+        
+      }
+    } catch (error) {
+      console.error()
+    }
+  }
+
   return <div className="OrdersSection">
-    <OrdersNavigationBar createOrder={ createOrder }/>
-    <OrdersTable orders={ orders } deleteOrder={ deleteOrder }/>
+    <OrdersNavigationBar />
+    <Outlet context={{orders, deleteOrder, createOrder}}/>
   </div>
 }
 
 export default OrdersSection
+
+//<OrdersTable orders={ orders } deleteOrder={ deleteOrder }/>

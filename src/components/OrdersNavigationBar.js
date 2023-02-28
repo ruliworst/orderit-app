@@ -2,6 +2,7 @@ import '../styles/OrdersNavigationBar.css'
 import Togglable from './Togglable'
 import OrderForm from './OrderForm'
 import { useRef } from 'react'
+import { Link } from 'react-router-dom'
 
 const OrdersNavigationBar = (props) => {
   const { createOrder } = props
@@ -11,15 +12,13 @@ const OrdersNavigationBar = (props) => {
   return <div className="OrdersNavigationBar">
     <h3>Orders</h3>
     <ul>
-      <li>All</li>
+      <Link to="/orders/"><li>All</li></Link>
       <li>Pending</li>
       <li>Delivered</li>
       <li>Cancelled</li>
       <li>Returned</li>
     </ul>
-    <Togglable buttonLabel="New Order" ref={createOrderFormRef}>
-      <OrderForm createOrder={createOrder}/>
-    </Togglable>
+    <Link to='/orders/create' class='createOrderLink'>New Order</Link>
   </div>
 }
 

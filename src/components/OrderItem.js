@@ -1,5 +1,5 @@
 import '../styles/OrderItem.css';
-import { FaTrashAlt } from 'react-icons/fa'
+import { FaCheckSquare, FaTrashAlt } from 'react-icons/fa'
 
 const OrderItem = props => {
   const {id, status, location, price, quantity, item, deleteOrder} = props
@@ -15,7 +15,10 @@ const OrderItem = props => {
     <td>{ price }</td>
     <td>{ quantity }</td>
     <td>{ item }</td>
-    <td><button onClick={handleDelete}>{ FaTrashAlt() }</button></td>
+    <td>
+      <button>{ FaCheckSquare() }</button>
+      <button onClick={handleDelete}>{ FaTrashAlt() }</button>
+    </td>
   </tr>
 }
 

@@ -26,6 +26,12 @@ const createOrder = order => {
   return request.then(response => response.data)
 }
 
-const functions = { getAll, getOrder, createOrder, deleteOrder }
+const completeOrder = (publicId, order) => {
+  const request = axios.put(`${baseUrl}/${publicId}`, {...order, status: 'Delivered'})
+ 
+  return request.then(response => response.data)
+}
+
+const functions = { getAll, getOrder, createOrder, deleteOrder, completeOrder }
 
 export default functions

@@ -23,11 +23,31 @@
   padding: 0.3rem 0.4rem 0.4rem 0.4rem;
   width: 5rem;
   text-align: center;
+  border-radius: 4px;
+  transition: ease-out 0.4s;
 }
 
 .OrdersNavigationBar li:hover {
   background-color:rgba(81, 187, 254, 0.8);
   cursor: pointer;
   box-shadow: 0px 0px 12px -1px rgba(0,0,0,0.1);
-  font-weight: bold;
+  border-radius: 4px;
+  transition: ease-out 0.4s;
+}
+
+.createOrderLink {
+  margin-top: 0.6rem;
+  padding: 0.3rem 0.4rem 0.4rem 0.4rem;
+  width: 5rem;
+  text-align: center;
+  border-radius: 4px;
+  transition: ease-out 0.4s;
+}
+
+.createOrderLink:hover {
+  background-color:rgba(0, 230, 27, 0.8);
+  cursor: pointer;
+  box-shadow: 0px 0px 12px -1px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  transition: ease-out 0.4s;
 }

@@ -1,9 +1,10 @@
+import { useOutletContext } from 'react-router-dom'
 import '../styles/OrdersTable.css'
 import OrderItem from './OrderItem'
 
 const OrdersTable = (props) => {
   // TODO: Implement Statistics functionality about the data.
-  const { orders, deleteOrder } = props
+  const { orders, deleteOrder } = useOutletContext()
 
   return <div className="OrdersTable">
     <table>
