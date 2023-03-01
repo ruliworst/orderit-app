@@ -1,6 +1,5 @@
 import '../styles/OrdersSection.css'
 import OrdersNavigationBar from "./OrdersNavigationBar"
-import OrdersTable from "./OrdersTable"
 import { useState, useEffect} from 'react'
 import ordersService from '../services/ordersService'
 import itemsService from '../services/itemsService'
@@ -8,6 +7,7 @@ import { Outlet } from 'react-router-dom'
 
 const OrdersSection = (props) => {
   const [orders, setOrders] = useState([])
+  const [filteredOrders, setFilteredOrders] = useState([])
 
   const createOrder = (location, price, quantity, item, status = 'Pending') => {
     try {
@@ -30,7 +30,10 @@ const OrdersSection = (props) => {
   } 
 
   useEffect(() => {
-    ordersService.getAll().then(orders => setOrders(orders))
+    ordersService.getAll().then(orders => {
+      setOrders(orders)
+      setFilteredOrders(orders)
+    })
   }, [])
 
   const deleteOrder = (orderId) => {
@@ -58,9 +61,14 @@ const OrdersSection = (props) => {
     }
   }
 
+  const handleFilterChange = (value = null) => {
+    const ordersAfterFilter = value === null ? orders : orders.filter(order => order.status === value)
+    setFilteredOrders(ordersAfterFilter)
+  }
+
   return <div className="OrdersSection">
-    <OrdersNavigationBar />
-    <Outlet context={{orders, deleteOrder, createOrder}}/>
+    <OrdersNavigationBar handleFilterChange={ handleFilterChange }/>
+    <Outlet context={{filteredOrders, deleteOrder, createOrder}}/>
   </div>
 }
 
