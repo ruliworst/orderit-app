@@ -54,7 +54,14 @@ const OrdersSection = (props) => {
   const completeOrder = (orderPublicId) => {
     try {
       if(window.confirm("Are you sure you want to complete the order?")) {
-        
+        ordersService
+          .completeOrder(orderPublicId)
+          .then(() => {
+            const updatedOrder = orders.filter(order => order.publicId === orderPublicId)
+            updatedOrder.status = "Delivered"
+            const filteredOrders = orders.filter(order => order.publicId !== orderPublicId)
+            setOrders({...filteredOrders, updatedOrder})
+          })
       }
     } catch (error) {
       console.error()
@@ -68,10 +75,8 @@ const OrdersSection = (props) => {
 
   return <div className="OrdersSection">
     <OrdersNavigationBar handleFilterChange={ handleFilterChange }/>
-    <Outlet context={{filteredOrders, deleteOrder, createOrder}}/>
+    <Outlet context={{filteredOrders, deleteOrder, createOrder, completeOrder}}/>
   </div>
 }
 
 export default OrdersSection
-
-//<OrdersTable orders={ orders } deleteOrder={ deleteOrder }/>
